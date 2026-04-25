@@ -20,7 +20,7 @@ export default function Home() {
             {/* ═══════════════ HERO BANNER ═══════════════ */}
             <section className="relative w-full h-[90vh] min-h-[600px] overflow-hidden bg-gray-950">
                 <img
-                    src="/assets/images/banner/banner_prinicpal-modelo-bolso.webp"
+                    src={`${import.meta.env.BASE_URL}assets/images/banner/banner_prinicpal-modelo-bolso.webp`}
                     alt="Moda sin límites"
                     className="absolute inset-0 w-full h-full object-cover object-center opacity-85"
                 />

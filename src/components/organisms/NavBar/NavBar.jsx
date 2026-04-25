@@ -38,7 +38,7 @@ export default function NavBar() {
 
           {/* Logo (Center) */}
           <Link to="/" className="flex-shrink-0">
-            <img src="/assets/images/logo/logo.png" alt="Lumière Store" className="h-14 w-auto brightness-125" />
+            <img src={`${import.meta.env.BASE_URL}assets/images/logo/logo.png`} alt="Lumière Store" className="h-14 w-auto brightness-125" />
           </Link>
 
           {/* Right Icons */}

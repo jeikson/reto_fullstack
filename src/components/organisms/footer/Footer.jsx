@@ -8,7 +8,7 @@ export default function Footer() {
                     {/* Brand */}
                     <div>
                         <Link to="/" className="inline-block mb-4">
-                            <img src="/assets/images/logo/logo.png" alt="Lumière Store" className="h-16 w-auto brightness-110" />
+                            <img src={`${import.meta.env.BASE_URL}assets/images/logo/logo.png`} alt="Lumière Store" className="h-16 w-auto brightness-110" />
                         </Link>
                         <p className="text-sm leading-relaxed max-w-xs">
                             Concept Store de moda urbana y lifestyle premium. Curated fashion para quienes no siguen tendencias, las crean.

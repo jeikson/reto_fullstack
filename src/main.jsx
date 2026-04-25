@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import Layout from "./components/templates/Layout"
 import Home from "./components/organisms/home/Home"
 import Gallery from "./components/organisms/gallery/Gallery"
@@ -14,7 +14,7 @@ import About from "./components/organisms/about/About"
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -28,6 +28,6 @@ createRoot(document.getElementById('root')).render(
           <Route path="about" element={<About />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   </StrictMode>,
 )
