@@ -24,39 +24,10 @@ const Register = () => {
     e.preventDefault();
     setError('');
 
-    // Validar contraseñas coinciden
     if (formData.password !== formData.confirmPassword) {
       setError('Las contraseñas no coinciden.');
       return;
     }
-
-    /*
-    // Validar email único
-    const existingUsers = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
-    const allUsers = [...MOCK_USERS, ...existingUsers];
-    const emailExists = allUsers.some(user => user.email === formData.email);
-    if (emailExists) {
-      setError('El email ya está registrado.');
-      return;
-    }
-
-    // Crear nuevo usuario
-    const newUser = {
-      id: Date.now(), // ID único basado en timestamp
-      name: formData.name,
-      email: formData.email,
-      cellphone: formData.cellphone,
-      address: formData.address,
-      password: formData.password
-    };
-
-    // Guardar en localStorage
-    existingUsers.push(newUser);
-    localStorage.setItem('registeredUsers', JSON.stringify(existingUsers));
-
-    // Navegar a login
-    navigate('/login');
-    */
 
     const respuesta = await registerFullUser(formData);
 
@@ -69,12 +40,11 @@ const Register = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-      {/* Reducción de max-w y padding para evitar el scroll vertical */}
       <div className="w-full max-w-4xl bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden transition-all">
         <div className="p-6 md:p-10">
 
           <header className="mb-6 text-center">
-            <h2 className="text-3xl font-bold text-gray-900 tracking-tight">Crear cuenta</h2>
+            <h2 className="text-3xl font-bold text-gray-900 tracking-tight font-display">Crear Cuenta</h2>
             <p className="text-gray-500 text-sm mt-1">Únete a nuestra comunidad hoy mismo</p>
           </header>
 
@@ -95,7 +65,7 @@ const Register = () => {
                     type="text"
                     name="name"
                     required
-                    className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 outline-none transition-all placeholder:text-gray-400"
+                    className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gold-400/30 focus:border-gold-400 outline-none transition-all placeholder:text-gray-400"
                     placeholder="Ej. Juan Pérez"
                     onChange={handleChange}
                   />
@@ -107,7 +77,7 @@ const Register = () => {
                     type="email"
                     name="email"
                     required
-                    className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 outline-none transition-all placeholder:text-gray-400"
+                    className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gold-400/30 focus:border-gold-400 outline-none transition-all placeholder:text-gray-400"
                     placeholder="correo@ejemplo.com"
                     onChange={handleChange}
                   />
@@ -119,7 +89,7 @@ const Register = () => {
                     <input
                       type="tel"
                       name="cellphone"
-                      className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 outline-none transition-all"
+                      className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gold-400/30 focus:border-gold-400 outline-none transition-all"
                       placeholder="+57 300..."
                       onChange={handleChange}
                     />
@@ -129,7 +99,7 @@ const Register = () => {
                     <input
                       type="text"
                       name="address"
-                      className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 outline-none transition-all"
+                      className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gold-400/30 focus:border-gold-400 outline-none transition-all"
                       placeholder="Calle 123..."
                       onChange={handleChange}
                     />
@@ -145,7 +115,7 @@ const Register = () => {
                     type="password"
                     name="password"
                     required
-                    className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 outline-none transition-all"
+                    className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gold-400/30 focus:border-gold-400 outline-none transition-all"
                     placeholder="••••••••"
                     onChange={handleChange}
                   />
@@ -158,7 +128,7 @@ const Register = () => {
                     type="password"
                     name="confirmPassword"
                     required
-                    className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 outline-none transition-all"
+                    className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gold-400/30 focus:border-gold-400 outline-none transition-all"
                     placeholder="••••••••"
                     onChange={handleChange}
                   />
@@ -166,17 +136,17 @@ const Register = () => {
               </div>
             </div>
 
-            {/* Acción y Footer más compactos */}
+            {/* Acción */}
             <div className="pt-4 space-y-4">
               <button
                 type="submit"
-                className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-lg shadow-md hover:shadow-lg transition-all active:scale-[0.98] text-base"
+                className="w-full bg-gray-950 hover:bg-gold-500 hover:text-gray-950 text-white font-bold py-3 rounded-lg shadow-md hover:shadow-lg transition-all active:scale-[0.98] text-base"
               >
                 Registrarse
               </button>
 
               <p className="text-center text-sm text-gray-500">
-                ¿Ya tienes una cuenta? <Link to="/login" className="text-indigo-600 font-semibold hover:underline">Inicia sesión</Link>
+                ¿Ya tienes una cuenta? <Link to="/login" className="text-gold-500 font-semibold hover:underline">Inicia sesión</Link>
               </p>
             </div>
           </form>

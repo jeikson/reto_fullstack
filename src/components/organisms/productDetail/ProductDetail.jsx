@@ -29,7 +29,7 @@ export default function ProductDetail() {
 
     const renderStars = (rate) => {
         return Array.from({ length: 5 }, (_, i) => (
-            <span key={i} className={i < Math.round(rate) ? 'text-yellow-400' : 'text-gray-300'}>
+            <span key={i} className={i < Math.round(rate) ? 'text-gold-400' : 'text-gray-300'}>
                 ★
             </span>
         ));
@@ -38,7 +38,7 @@ export default function ProductDetail() {
     if (loading) {
         return (
             <div className="flex justify-center items-center h-64">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500"></div>
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gold-400"></div>
             </div>
         );
     }
@@ -49,9 +49,9 @@ export default function ProductDetail() {
                 <p className="text-xl text-gray-600">Producto no encontrado.</p>
                 <button
                     onClick={() => navigate('/gallery')}
-                    className="px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-medium rounded-lg hover:opacity-90 transition-opacity"
+                    className="px-6 py-2 bg-gray-950 text-white font-medium rounded-lg hover:bg-gold-500 hover:text-gray-950 transition-all"
                 >
-                    Volver a la galería
+                    Volver a la tienda
                 </button>
             </div>
         );
@@ -64,12 +64,12 @@ export default function ProductDetail() {
             {/* Back button */}
             <button
                 onClick={() => navigate('/gallery')}
-                className="flex items-center gap-2 text-gray-500 hover:text-purple-600 transition-colors mb-6 group"
+                className="flex items-center gap-2 text-gray-500 hover:text-gold-500 transition-colors mb-6 group"
             >
                 <svg className="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
-                Volver a la galería
+                Volver a la tienda
             </button>
 
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
@@ -81,15 +81,15 @@ export default function ProductDetail() {
                             alt={product.title}
                             className="w-full h-80 md:h-full object-cover"
                         />
-                        <div className="absolute top-4 left-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-                            NUEVO
+                        <div className="absolute top-4 left-4 bg-gray-950 text-gold-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                            Nuevo
                         </div>
                     </div>
 
                     {/* Info */}
                     <div className="md:w-1/2 p-8 flex flex-col justify-between">
                         <div>
-                            <h1 className="text-3xl font-bold text-gray-900 mb-2">{product.title}</h1>
+                            <h1 className="text-3xl font-bold text-gray-900 mb-2 font-display">{product.title}</h1>
 
                             {/* Rating */}
                             <div className="flex items-center gap-2 mb-4">
@@ -98,7 +98,7 @@ export default function ProductDetail() {
                             </div>
 
                             {/* Price */}
-                            <p className="text-4xl font-extrabold bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent mb-6">
+                            <p className="text-4xl font-extrabold text-gold-500 mb-6">
                                 ${product.price}
                             </p>
 
@@ -134,10 +134,10 @@ export default function ProductDetail() {
                             {/* Add to cart button */}
                             <button
                                 onClick={handleAddToCart}
-                                className={`w-full py-3 rounded-xl font-semibold text-white text-lg transition-all duration-300 ${
+                                className={`w-full py-3 rounded-xl font-semibold text-lg transition-all duration-300 ${
                                     added
-                                        ? 'bg-green-500 scale-95'
-                                        : 'bg-gradient-to-r from-purple-500 via-purple-600 to-pink-500 hover:opacity-90 hover:shadow-lg hover:shadow-purple-200 active:scale-95'
+                                        ? 'bg-gold-400 text-gray-950 scale-95'
+                                        : 'bg-gray-950 text-white hover:bg-gold-500 hover:text-gray-950 hover:shadow-lg active:scale-95'
                                 }`}
                             >
                                 {added ? '✓ Agregado al carrito' : 'Agregar al carrito'}
