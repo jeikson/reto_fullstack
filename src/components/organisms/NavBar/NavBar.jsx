@@ -31,7 +31,7 @@ export default function NavBar() {
             <Link to="/gallery" className={`text-xs font-bold uppercase tracking-[0.15em] transition-colors ${isActive('/gallery') ? 'text-gold-400' : 'text-white hover:text-gold-400'}`}>
               Tienda
             </Link>
-            <Link to="/checkout" className={`text-xs font-bold uppercase tracking-[0.15em] transition-colors ${isActive('/checkout') ? 'text-gold-400' : 'text-white hover:text-gold-400'}`}>
+            <Link to="/about" className={`text-xs font-bold uppercase tracking-[0.15em] transition-colors ${isActive('/about') ? 'text-gold-400' : 'text-white hover:text-gold-400'}`}>
               Nosotros
             </Link>
           </nav>
@@ -111,7 +111,7 @@ export default function NavBar() {
               <Link to="/gallery" onClick={() => setMobileMenuOpen(false)} className={`text-sm font-bold uppercase tracking-wider ${isActive('/gallery') ? 'text-gold-400' : 'text-white hover:text-gold-400'}`}>
                 Tienda
               </Link>
-              <Link to="/checkout" onClick={() => setMobileMenuOpen(false)} className={`text-sm font-bold uppercase tracking-wider ${isActive('/checkout') ? 'text-gold-400' : 'text-white hover:text-gold-400'}`}>
+              <Link to="/about" onClick={() => setMobileMenuOpen(false)} className={`text-sm font-bold uppercase tracking-wider ${isActive('/about') ? 'text-gold-400' : 'text-white hover:text-gold-400'}`}>
                 Nosotros
               </Link>
             </nav>

@@ -18,11 +18,11 @@ export default function Home() {
     return (
         <div>
             {/* ═══════════════ HERO BANNER ═══════════════ */}
-            <section className="relative w-full h-[70vh] min-h-[500px] overflow-hidden bg-gray-950">
+            <section className="relative w-full h-[90vh] min-h-[600px] overflow-hidden bg-gray-950">
                 <img
-                    src="/assets/images/hero-banner.png"
+                    src="/assets/images/banner/banner_prinicpal-modelo-bolso.webp"
                     alt="Moda sin límites"
-                    className="absolute inset-0 w-full h-full object-cover opacity-60"
+                    className="absolute inset-0 w-full h-full object-cover object-center opacity-60"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-gray-950/80 via-gray-950/40 to-transparent" />
                 <div className="relative container mx-auto px-6 h-full flex items-center">
