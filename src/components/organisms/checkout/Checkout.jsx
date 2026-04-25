@@ -1,12 +1,23 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import useCartStore from '../../../store/cartStore';
+import { createOrder } from '../../../firebase/orders';
+import { subscribeToAuthChanges } from '../../../firebase/auth';
 
 export default function Checkout() {
     const { items, getTotalPrice, clearCart } = useCartStore();
     const navigate = useNavigate();
     const [isProcessing, setIsProcessing] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
+    const [orderId, setOrderId] = useState(null);
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const unsubscribe = subscribeToAuthChanges((currentUser) => {
+            setUser(currentUser);
+        });
+        return () => unsubscribe();
+    }, []);
 
     useEffect(() => {
         if (items.length === 0 && !isSuccess) {
@@ -14,15 +25,29 @@ export default function Checkout() {
         }
     }, [items, navigate, isSuccess]);
 
-    const handlePayment = (e) => {
+    const handlePayment = async (e) => {
         e.preventDefault();
         setIsProcessing(true);
-        
-        setTimeout(() => {
-            setIsProcessing(false);
-            setIsSuccess(true);
-            clearCart();
-        }, 2000);
+
+        // Simular delay de procesamiento de pago
+        await new Promise(resolve => setTimeout(resolve, 1500));
+
+        // Guardar pedido en Firebase
+        if (user) {
+            const result = await createOrder(
+                user.uid,
+                user.email,
+                items,
+                getTotalPrice()
+            );
+            if (result.success) {
+                setOrderId(result.orderId);
+            }
+        }
+
+        setIsProcessing(false);
+        setIsSuccess(true);
+        clearCart();
     };
 
     if (isSuccess) {
@@ -34,15 +59,28 @@ export default function Checkout() {
                     </svg>
                 </div>
                 <h1 className="text-4xl font-bold text-gray-900 mb-4 font-display">¡Pago Exitoso!</h1>
-                <p className="text-lg text-gray-600 mb-8">
-                    Tu pedido ha sido procesado correctamente. Recibirás un correo con los detalles en breve.
+                <p className="text-lg text-gray-600 mb-2">
+                    Tu pedido ha sido procesado correctamente.
                 </p>
-                <Link
-                    to="/gallery"
-                    className="inline-block px-8 py-3 bg-gray-950 text-white font-medium rounded-lg hover:bg-gold-500 hover:text-gray-950 transition-all"
-                >
-                    Volver a la Tienda
-                </Link>
+                {orderId && (
+                    <p className="text-sm text-gray-400 mb-8">
+                        Nº de Pedido: <span className="font-mono text-gold-500">{orderId.slice(0, 8).toUpperCase()}</span>
+                    </p>
+                )}
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Link
+                        to="/profile"
+                        className="inline-block px-8 py-3 bg-gold-400 text-gray-950 font-medium rounded-lg hover:bg-gold-500 transition-all"
+                    >
+                        Ver Mis Pedidos
+                    </Link>
+                    <Link
+                        to="/gallery"
+                        className="inline-block px-8 py-3 bg-gray-950 text-white font-medium rounded-lg hover:bg-gray-800 transition-all"
+                    >
+                        Seguir Comprando
+                    </Link>
+                </div>
             </div>
         );
     }
@@ -50,6 +88,12 @@ export default function Checkout() {
     return (
         <div className="max-w-6xl mx-auto px-4 py-10">
             <h1 className="text-3xl font-bold text-gray-900 mb-8 font-display">FINALIZAR COMPRA</h1>
+
+            {!user && (
+                <div className="mb-6 p-4 bg-gold-50 border border-gold-200 rounded-lg text-sm text-gray-700">
+                    <strong>Nota:</strong> <Link to="/login" className="text-gold-500 underline">Inicia sesión</Link> para guardar tu pedido y poder rastrearlo desde tu perfil.
+                </div>
+            )}
 
             <div className="flex flex-col lg:flex-row gap-10">
                 {/* Formulario de envío y pago */}
@@ -65,7 +109,7 @@ export default function Checkout() {
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-2">Correo electrónico *</label>
-                                    <input type="email" required className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gold-400 outline-none" placeholder="juan@ejemplo.com" />
+                                    <input type="email" required className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gold-400 outline-none" placeholder="juan@ejemplo.com" defaultValue={user?.email || ''} />
                                 </div>
                             </div>
                             
@@ -104,7 +148,12 @@ export default function Checkout() {
                                         : 'bg-gray-950 text-white hover:bg-gold-500 hover:text-gray-950 hover:shadow-lg hover:-translate-y-1'
                                 }`}
                             >
-                                {isProcessing ? 'Procesando pago...' : `Pagar $${getTotalPrice().toFixed(2)}`}
+                                {isProcessing ? (
+                                    <span className="flex items-center justify-center gap-3">
+                                        <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" /></svg>
+                                        Procesando pago...
+                                    </span>
+                                ) : `Pagar $${getTotalPrice().toFixed(2)}`}
                             </button>
                         </form>
                     </div>
