@@ -18,13 +18,13 @@ export default function Cart() {
     if (items.length === 0) {
         return (
             <div className="max-w-4xl mx-auto px-4 py-16 text-center">
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">Tu carrito está vacío</h2>
-                <p className="text-gray-600 mb-8">Parece que aún no has agregado productos a tu carrito.</p>
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">Your cart is empty</h2>
+                <p className="text-gray-600 mb-8">It seems you haven't added any products to your cart yet.</p>
                 <Link
                     to="/gallery"
-                    className="inline-block px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-medium rounded-lg hover:opacity-90 transition-opacity"
+                    className="inline-block px-8 py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition-colors"
                 >
-                    Explorar productos
+                    Explore products
                 </Link>
             </div>
         );
@@ -32,7 +32,7 @@ export default function Cart() {
 
     return (
         <div className="max-w-5xl mx-auto px-4 py-10">
-            <h1 className="text-3xl font-bold text-gray-900 mb-8">Carrito de Compras</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-8">Shopping Cart</h1>
 
             <div className="flex flex-col lg:flex-row gap-8">
                 {/* Lista de productos */}
@@ -50,7 +50,7 @@ export default function Cart() {
                                         />
                                         <div className="flex-1 text-center sm:text-left">
                                             <h3 className="text-lg font-semibold text-gray-800">{item.product.title}</h3>
-                                            <p className="text-purple-600 font-bold">${item.product.price}</p>
+                                            <p className="text-green-600 font-bold">${item.product.price}</p>
                                         </div>
 
                                         <div className="flex items-center gap-4">
@@ -92,10 +92,10 @@ export default function Cart() {
                             onClick={clearCart}
                             className="text-gray-500 hover:text-red-600 font-medium transition-colors"
                         >
-                            Vaciar carrito
+                            Clear cart
                         </button>
-                        <Link to="/gallery" className="text-purple-600 font-medium hover:text-purple-800 transition-colors">
-                            Continuar comprando
+                        <Link to="/gallery" className="text-green-600 font-medium hover:text-green-800 transition-colors">
+                            Continue shopping
                         </Link>
                     </div>
                 </div>
@@ -103,7 +103,7 @@ export default function Cart() {
                 {/* Resumen */}
                 <div className="lg:w-1/3">
                     <div className="bg-gray-50 rounded-2xl p-6 border border-gray-200 sticky top-24">
-                        <h2 className="text-xl font-bold text-gray-900 mb-6">Resumen de compra</h2>
+                        <h2 className="text-xl font-bold text-gray-900 mb-6">Order Summary</h2>
                         
                         <div className="space-y-4 mb-6">
                             <div className="flex justify-between text-gray-600">
@@ -111,13 +111,13 @@ export default function Cart() {
                                 <span>${getTotalPrice().toFixed(2)}</span>
                             </div>
                             <div className="flex justify-between text-gray-600">
-                                <span>Envío</span>
-                                <span>Gratis</span>
+                                <span>Shipping</span>
+                                <span>Free</span>
                             </div>
                             <div className="pt-4 border-t border-gray-200">
                                 <div className="flex justify-between items-center">
                                     <span className="text-lg font-bold text-gray-900">Total</span>
-                                    <span className="text-2xl font-extrabold bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">
+                                    <span className="text-2xl font-extrabold text-green-600">
                                         ${getTotalPrice().toFixed(2)}
                                     </span>
                                 </div>
@@ -126,9 +126,9 @@ export default function Cart() {
 
                         <button
                             onClick={() => navigate('/checkout')}
-                            className="w-full py-4 bg-gradient-to-r from-purple-500 via-purple-600 to-pink-500 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-purple-200 transition-all active:scale-95"
+                            className="w-full py-4 bg-green-600 hover:bg-green-700 text-white font-bold rounded-xl shadow hover:shadow-lg transition-all active:scale-95"
                         >
-                            Proceder al Checkout
+                            Proceed to Checkout
                         </button>
                     </div>
                 </div>

@@ -3,7 +3,7 @@ import { create } from 'zustand';
 const useCartStore = create((set, get) => ({
     items: [],
 
-    addItem: (product, quantity) => {
+    addItem: (product, quantity = 1) => {
         const existing = get().items.find(item => item.product.id === product.id);
         if (existing) {
             set({

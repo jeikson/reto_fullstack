@@ -1,28 +1,62 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
 
 @theme {
-  /* Definición de colores del ADN */
-  --color-brand-blue: #4D61FF;
-  --color-brand-dark: #32325d;
-  --color-brand-muted: #8898aa;
-  --color-brand-border: #dee2e6;
+  --font-sans: "Inter", sans-serif;
   
-  /* Ajustes de radio y sombras para el estilo moderno de la imagen */
-  --radius-dna: 0.5rem;
-  --shadow-dna: 0 4px 11px rgba(77, 97, 255, 0.35);
+  --color-gray-50: #F9F9F9;
+  --color-gray-100: #f0f3f2;
+  --color-gray-200: #ecf0ef;
+  --color-gray-300: #dfe2e1;
+  --color-gray-400: #c1c7c6;
+  --color-gray-500: #889397;
+  --color-gray-600: #5c6c75;
+  --color-gray-700: #3d4f58;
+  --color-gray-800: #21313c;
+  --color-gray-900: #001e2b;
+  --color-gray-950: #00131C;
+
+  --color-green-50: #e8ffe6;
+  --color-green-100: #cefdca;
+  --color-green-200: #a2fb9b;
+  --color-green-300: #68f561;
+  --color-green-400: #37ea31;
+  --color-green-500: #16d012;
+  --color-green-600: #0aad0a;
+  --color-green-700: #0d7e0f;
+  --color-green-800: #106412;
+  --color-green-900: #135416;
+  --color-green-950: #042f07;
+
+  --text-sm: 0.75rem;
+  --text-base: 0.875rem;
+  --text-md: 1.125rem;
+  --text-lg: 1.5rem;
+  --text-xl: 1.75rem;
+  --text-2xl: 2rem;
+  --text-3xl: 2.5rem;
+  --text-4xl: 2.441rem;
+  --text-5xl: 3.052rem;
 }
 
-/* 2. Componentes base con @variant o clases de capa */
-@layer components {
-  .input-dna {
-    @apply w-full border-b border-brand-border py-2 text-brand-dark 
-           outline-none transition-all duration-200 
-           focus:border-brand-blue placeholder:text-brand-muted/50;
+@layer base {
+  body {
+    @apply text-base text-gray-600 font-sans bg-white;
   }
+}
 
-  .btn-dna {
-    @apply flex items-center justify-center gap-2 bg-brand-blue text-white 
-           px-8 py-3 rounded-dna font-semibold transition-all 
-           hover:brightness-110 hover:shadow-dna active:scale-95;
+@layer components {
+  .btn {
+    @apply rounded-lg px-4 py-2 text-center transition-all duration-300 shadow-sm font-semibold;
+  }
+  .btn-sm {
+    @apply px-3 py-1.5 text-sm;
+  }
+  .card-product {
+    @apply overflow-hidden;
+  }
+  .card-product:hover .card-product-action {
+    @apply opacity-100 visible;
   }
 }

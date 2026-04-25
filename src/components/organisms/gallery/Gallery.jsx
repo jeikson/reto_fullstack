@@ -2,29 +2,13 @@ import { useState, useEffect, useMemo } from "react";
 import ProductCard from "../../molecules/ProductCard";
 import { getProducts } from "../../../firebase/products";
 
-/* REFERENCIA: lógica original con mockdata
-import MOCK_PRODUCTS from "../../../mockdata/mock_products";
-export function GalleryMock() {
-    return (
-        <section className="p-6">
-            <h2 className="text-2xl font-bold mb-6">Nuestros Productos</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
-                {MOCK_PRODUCTS.map((producto) => (
-                    <ProductCard key={producto.id} product={producto} />
-                ))}
-            </div>
-        </section>
-    );
-}
-*/
-
 export default function Gallery() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("all");
     const [currentPage, setCurrentPage] = useState(1);
-    const ITEMS_PER_PAGE = 8;
+    const ITEMS_PER_PAGE = 10; // Updated to 10 for a 5-column grid
 
     useEffect(() => {
         getProducts().then((data) => {
@@ -62,43 +46,43 @@ export default function Gallery() {
     if (loading) {
         return (
             <div className="flex justify-center items-center h-64">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500"></div>
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
             </div>
         );
     }
 
     return (
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <section className="container mx-auto px-4 py-10">
             <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
-                <h2 className="text-3xl font-bold text-gray-900">Encuentra lo que buscas</h2>
+                <h2 className="text-2xl font-bold text-gray-900">Popular Products</h2>
                 
                 {/* Search and Filter */}
                 <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
                     <input
                         type="text"
-                        placeholder="Buscar productos..."
+                        placeholder="Search for products..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none w-full sm:w-64 transition-all"
+                        className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent outline-none w-full sm:w-64 transition-all"
                     />
                     <select
                         value={selectedCategory}
                         onChange={(e) => setSelectedCategory(e.target.value)}
-                        className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none bg-white min-w-[150px] capitalize"
+                        className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent outline-none bg-white min-w-[150px] capitalize"
                     >
                         {categories.map((category) => (
                             <option key={category} value={category}>
-                                {category === "all" ? "Todas las categorías" : category}
+                                {category === "all" ? "All categories" : category}
                             </option>
                         ))}
                     </select>
                 </div>
             </div>
 
-            {/* Grid Layout Responsivo */}
+            {/* Grid Layout Responsivo FreshCart */}
             {paginatedProducts.length > 0 ? (
                 <>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center mb-10">
+                    <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mb-10">
                         {paginatedProducts.map((producto) => (
                             <ProductCard key={producto.id} product={producto} />
                         ))}
@@ -113,7 +97,7 @@ export default function Gallery() {
                                 className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                                     currentPage === 1
                                         ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                                        : "bg-purple-100 text-purple-700 hover:bg-purple-200"
+                                        : "bg-green-100 text-green-700 hover:bg-green-200"
                                 }`}
                             >
                                 Anterior
@@ -127,7 +111,7 @@ export default function Gallery() {
                                 className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                                     currentPage === totalPages
                                         ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                                        : "bg-purple-100 text-purple-700 hover:bg-purple-200"
+                                        : "bg-green-100 text-green-700 hover:bg-green-200"
                                 }`}
                             >
                                 Siguiente
