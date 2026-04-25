@@ -18,22 +18,23 @@ export default function Home() {
     return (
         <div>
             {/* ═══════════════ HERO BANNER ═══════════════ */}
-            <section className="relative w-full h-[90vh] min-h-[600px] overflow-hidden bg-gray-950">
+            <section className="relative w-full h-[100svh] md:h-[90vh] min-h-[500px] overflow-hidden bg-gray-950">
                 <img
                     src={`${import.meta.env.BASE_URL}assets/images/banner/banner_prinicpal-modelo-bolso.webp`}
                     alt="Moda sin límites"
-                    className="absolute inset-0 w-full h-full object-cover object-center opacity-85"
+                    className="absolute inset-0 w-full h-full object-cover object-[75%_center] md:object-center opacity-85"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-gray-950/90 via-gray-950/50 to-transparent" />
-                <div className="relative container mx-auto px-6 h-full flex items-center">
+                {/* Gradiente: de abajo a arriba en móvil, de izquierda a derecha en desktop */}
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-950/95 via-gray-950/40 to-transparent md:bg-gradient-to-r md:from-gray-950/90 md:via-gray-950/50 md:to-transparent" />
+                <div className="relative container mx-auto px-6 h-full flex items-end pb-16 md:items-center md:pb-0">
                     <div className="max-w-xl">
                         <span className="inline-block text-gold-400 text-sm font-semibold tracking-[0.3em] uppercase mb-4">
                             Nueva Colección 2026
                         </span>
-                        <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
+                        <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
                             MODA SIN<br />LÍMITES
                         </h1>
-                        <p className="text-gray-300 text-lg mb-8 max-w-md">
+                        <p className="text-gray-300 text-base md:text-lg mb-8 max-w-md">
                             La nueva colección redefine la estética urbana. Siluetas audaces, texturas crudas y actitud inquebrantable.
                         </p>
                         <Link
