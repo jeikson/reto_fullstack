@@ -19,32 +19,32 @@ export default function NavBar() {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
+    <header className="sticky top-0 z-50 bg-gray-950 border-b border-gray-800">
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-20">
 
           {/* Left Nav Links (desktop) */}
           <nav className="hidden lg:flex items-center gap-8">
-            <Link to="/" className={`text-xs font-bold uppercase tracking-[0.15em] transition-colors ${isActive('/') ? 'text-gold-500' : 'text-gray-900 hover:text-gold-500'}`}>
+            <Link to="/" className={`text-xs font-bold uppercase tracking-[0.15em] transition-colors ${isActive('/') ? 'text-gold-400' : 'text-white hover:text-gold-400'}`}>
               Inicio
             </Link>
-            <Link to="/gallery" className={`text-xs font-bold uppercase tracking-[0.15em] transition-colors ${isActive('/gallery') ? 'text-gold-500' : 'text-gray-900 hover:text-gold-500'}`}>
+            <Link to="/gallery" className={`text-xs font-bold uppercase tracking-[0.15em] transition-colors ${isActive('/gallery') ? 'text-gold-400' : 'text-white hover:text-gold-400'}`}>
               Tienda
             </Link>
-            <Link to="/checkout" className={`text-xs font-bold uppercase tracking-[0.15em] transition-colors ${isActive('/checkout') ? 'text-gold-500' : 'text-gray-900 hover:text-gold-500'}`}>
+            <Link to="/checkout" className={`text-xs font-bold uppercase tracking-[0.15em] transition-colors ${isActive('/checkout') ? 'text-gold-400' : 'text-white hover:text-gold-400'}`}>
               Nosotros
             </Link>
           </nav>
 
           {/* Logo (Center) */}
           <Link to="/" className="flex-shrink-0">
-            <img src="/assets/images/logo/logo.png" alt="Lumière Store" className="h-14 w-auto" />
+            <img src="/assets/images/logo/logo.png" alt="Lumière Store" className="h-14 w-auto brightness-125" />
           </Link>
 
           {/* Right Icons */}
           <div className="flex items-center gap-5">
             {/* Search (Desktop) */}
-            <button className="hidden lg:block text-gray-700 hover:text-gold-500 transition-colors">
+            <button className="hidden lg:block text-gold-400 hover:text-gold-300 transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
@@ -54,7 +54,7 @@ export default function NavBar() {
 
             {/* User */}
             {loggedInUser ? (
-              <Link to="/profile" className="text-gray-700 hover:text-gold-500 transition-colors">
+              <Link to="/profile" className="text-gold-400 hover:text-gold-300 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
@@ -62,7 +62,7 @@ export default function NavBar() {
                 </svg>
               </Link>
             ) : (
-              <Link to="/login" className="text-gray-700 hover:text-gold-500 transition-colors">
+              <Link to="/login" className="text-gold-400 hover:text-gold-300 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
@@ -72,7 +72,7 @@ export default function NavBar() {
             )}
 
             {/* Cart */}
-            <Link to="/cart" className="text-gray-700 hover:text-gold-500 transition-colors relative">
+            <Link to="/cart" className="text-gold-400 hover:text-gold-300 transition-colors relative">
               <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304z" />
@@ -87,7 +87,7 @@ export default function NavBar() {
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden text-gray-700 hover:text-gold-500 transition-colors"
+              className="lg:hidden text-gold-400 hover:text-gold-300 transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -103,15 +103,15 @@ export default function NavBar() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden border-t border-gray-200 py-4">
+          <div className="lg:hidden border-t border-gray-800 py-4">
             <nav className="flex flex-col gap-4">
-              <Link to="/" onClick={() => setMobileMenuOpen(false)} className={`text-sm font-bold uppercase tracking-wider ${isActive('/') ? 'text-gold-500' : 'text-gray-900 hover:text-gold-500'}`}>
+              <Link to="/" onClick={() => setMobileMenuOpen(false)} className={`text-sm font-bold uppercase tracking-wider ${isActive('/') ? 'text-gold-400' : 'text-white hover:text-gold-400'}`}>
                 Inicio
               </Link>
-              <Link to="/gallery" onClick={() => setMobileMenuOpen(false)} className={`text-sm font-bold uppercase tracking-wider ${isActive('/gallery') ? 'text-gold-500' : 'text-gray-900 hover:text-gold-500'}`}>
+              <Link to="/gallery" onClick={() => setMobileMenuOpen(false)} className={`text-sm font-bold uppercase tracking-wider ${isActive('/gallery') ? 'text-gold-400' : 'text-white hover:text-gold-400'}`}>
                 Tienda
               </Link>
-              <Link to="/checkout" onClick={() => setMobileMenuOpen(false)} className={`text-sm font-bold uppercase tracking-wider ${isActive('/checkout') ? 'text-gold-500' : 'text-gray-900 hover:text-gold-500'}`}>
+              <Link to="/checkout" onClick={() => setMobileMenuOpen(false)} className={`text-sm font-bold uppercase tracking-wider ${isActive('/checkout') ? 'text-gold-400' : 'text-white hover:text-gold-400'}`}>
                 Nosotros
               </Link>
             </nav>

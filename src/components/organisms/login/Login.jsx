@@ -20,21 +20,6 @@ const Login = () => {
     e.preventDefault();
     setError('');
 
-    /*
-    // Obtener usuarios registrados
-    const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
-    const allUsers = [...MOCK_USERS, ...registeredUsers];
-
-    // Buscar usuario
-    const user = allUsers.find(u => u.email === formData.email && u.password === formData.password);
-    if (user) {
-      // Login exitoso
-      localStorage.setItem('loggedInUser', JSON.stringify(user));
-      navigate('/gallery');
-    } else {
-      setError('Credenciales incorrectas.');
-    }
-      */
     const result = await loginUser(formData.email, formData.password);
     if (result.success) {
       navigate('/gallery');
@@ -49,11 +34,10 @@ const Login = () => {
         {/* Header con Icono */}
         <div className="flex flex-col items-center mb-12">
           <div className="mb-4">
-            {/* Icono similar al de la imagen */}
-            <img src={smile} alt="Smile Icon" className="w-[64px] h-[64px]" />
+            <img src={smile} alt="Icono de bienvenida" className="w-[64px] h-[64px]" />
           </div>
-          <h1 className="text-4xl font-bold text-slate-800 mb-2">Welcome!</h1>
-          <p className="text-slate-400 text-lg">Sign in to your account</p>
+          <h1 className="text-4xl font-bold text-gray-900 mb-2 font-display">¡Bienvenido!</h1>
+          <p className="text-gray-400 text-lg">Inicia sesión en tu cuenta</p>
         </div>
 
         {error && (
@@ -66,19 +50,19 @@ const Login = () => {
 
           {/* Input de Email */}
           <div className="relative group">
-            <label className="block text-slate-400 text-lg mb-1 group-focus-within:text-blue-500 transition-colors">
-              Email
+            <label className="block text-gray-400 text-lg mb-1 group-focus-within:text-gold-500 transition-colors">
+              Correo electrónico
             </label>
-            <div className="relative border-b border-gray-200 group-focus-within:border-blue-500 transition-all">
+            <div className="relative border-b border-gray-200 group-focus-within:border-gold-400 transition-all">
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full py-2 bg-transparent focus:outline-none text-slate-700 pr-10"
+                className="w-full py-2 bg-transparent focus:outline-none text-gray-700 pr-10"
                 required
               />
-              <span className="absolute right-0 top-2 text-slate-300">
+              <span className="absolute right-0 top-2 text-gray-300">
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
                 </svg>
@@ -88,19 +72,19 @@ const Login = () => {
 
           {/* Input de Password */}
           <div className="relative group">
-            <label className="block text-slate-400 text-lg mb-1 group-focus-within:text-blue-500 transition-colors">
-              Password
+            <label className="block text-gray-400 text-lg mb-1 group-focus-within:text-gold-500 transition-colors">
+              Contraseña
             </label>
-            <div className="relative border-b border-gray-200 group-focus-within:border-blue-500 transition-all">
+            <div className="relative border-b border-gray-200 group-focus-within:border-gold-400 transition-all">
               <input
                 type="password"
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full py-2 bg-transparent focus:outline-none text-slate-700 pr-10"
+                className="w-full py-2 bg-transparent focus:outline-none text-gray-700 pr-10"
                 required
               />
-              <span className="absolute right-0 top-2 text-slate-300 cursor-pointer hover:text-blue-500 transition-colors">
+              <span className="absolute right-0 top-2 text-gray-300 cursor-pointer hover:text-gold-500 transition-colors">
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
                 </svg>
@@ -108,26 +92,26 @@ const Login = () => {
             </div>
           </div>
 
-          {/* Opciones de Remember y Forgot */}
-          <div className="flex items-center justify-between text-slate-400">
+          {/* Opciones */}
+          <div className="flex items-center justify-between text-gray-400">
             <label className="flex items-center space-x-3 cursor-pointer">
               <input
                 type="checkbox"
-                className="w-5 h-5 border-gray-300 rounded focus:ring-blue-500 transition-all"
+                className="w-5 h-5 border-gray-300 rounded focus:ring-gold-400 transition-all"
               />
-              <span className="text-lg">remember me?</span>
+              <span className="text-lg">¿Recordarme?</span>
             </label>
-            <a href="#" className="text-blue-500 hover:text-blue-600 transition-colors text-lg">
-              forgot password?
+            <a href="#" className="text-gold-500 hover:text-gold-600 transition-colors text-lg">
+              ¿Olvidaste tu contraseña?
             </a>
           </div>
 
           {/* Botón de Login */}
           <button
             type="submit"
-            className="w-3/5 py-4 btn-dna hover:bg-blue-700 text-white font-bold rounded-xl flex items-center justify-center space-x-3 transition-all shadow-lg shadow-blue-200 active:scale-95"
+            className="w-3/5 py-4 bg-gray-950 hover:bg-gold-500 hover:text-gray-950 text-white font-bold rounded-xl flex items-center justify-center space-x-3 transition-all shadow-lg shadow-gray-200 active:scale-95"
           >
-            <span className="text-xl">Login</span>
+            <span className="text-xl">Iniciar Sesión</span>
             <svg
               className="w-6 h-6"
               fill="none"
