@@ -22,9 +22,9 @@ export default function Home() {
                 <img
                     src="/assets/images/banner/banner_prinicpal-modelo-bolso.webp"
                     alt="Moda sin límites"
-                    className="absolute inset-0 w-full h-full object-cover object-center opacity-60"
+                    className="absolute inset-0 w-full h-full object-cover object-center opacity-85"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-gray-950/80 via-gray-950/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-r from-gray-950/90 via-gray-950/50 to-transparent" />
                 <div className="relative container mx-auto px-6 h-full flex items-center">
                     <div className="max-w-xl">
                         <span className="inline-block text-gold-400 text-sm font-semibold tracking-[0.3em] uppercase mb-4">
