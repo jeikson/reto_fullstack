@@ -1,8 +1,8 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import "./components/molecules/ProductCard"
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from "./components/templates/Layout"
+import Home from "./components/organisms/home/Home"
 import Gallery from "./components/organisms/gallery/Gallery"
 import Login from "./components/organisms/login/Login"
 import Register from "./components/organisms/register/Register"
@@ -16,7 +16,7 @@ createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Navigate to="/gallery" replace />} />
+          <Route index element={<Home />} />
           <Route path="gallery" element={<Gallery />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
